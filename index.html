@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>¿Quieres Renunciar?</title>
+  <title>¿Quieres salir conmigo?</title>
 
   <style>
     body {
@@ -17,8 +17,7 @@
     }
 
     .card {
-      background: linear-gradient(135deg, #000000, #3b0764);
-      <img src="https://wallpaperaccess.com/full/2641047.gif">
+      background: white;
       padding: 40px;
       border-radius: 25px;
       text-align: center;
@@ -61,32 +60,32 @@
   <div class="card">
     <img src="https://media.tenor.com/JQq16u9aZnIAAAAi/cat-kitten.gif">
 
-    <h1>🌸 ¿Quieres Renunciar? 🌸</h1>
+    <h1>🌸 ¿Quieres salir conmigo? 🌸</h1>
 
-    <button id="si" onclick="aceptar()">No 💖 </button>
-    <button id="no">Sí 😭</button>
+    <button id="si" onclick="aceptar()">Sí 💖</button>
+    <button id="no">No 😭</button>
   </div>
 
   <script>
     const botonNo = document.getElementById("no");
 
-    botonSi.addEventListener("mouseover", function() {
+    botonNo.addEventListener("mouseover", function() {
       const anchoPantalla = window.innerWidth;
       const altoPantalla = window.innerHeight;
 
       const nuevaX = Math.random() * (anchoPantalla - 100);
       const nuevaY = Math.random() * (altoPantalla - 100);
 
-      botonSi.style.position = "fixed";
-      botonSi.style.left = nuevaX + "px";
-      botonSi.style.top = nuevaY + "px";
+      botonNo.style.position = "fixed";
+      botonNo.style.left = nuevaX + "px";
+      botonNo.style.top = nuevaY + "px";
     });
 
     function aceptar() {
       document.body.innerHTML = `
         <div style="text-align:center; font-family:Arial;">
           <h1>¡Yujuuuu! 💖</h1>
-          <h2>Sabía que dirías que no 😌✨</h2>
+          <h2>Sabía que dirías que sí 😌✨</h2>
         </div>
       `;
     }
