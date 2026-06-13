@@ -69,16 +69,16 @@
   <script>
     const botonNo = document.getElementById("no");
 
-    botonNo.addEventListener("mouseover", function() {
+    botonSi.addEventListener("mouseover", function() {
       const anchoPantalla = window.innerWidth;
       const altoPantalla = window.innerHeight;
 
       const nuevaX = Math.random() * (anchoPantalla - 100);
       const nuevaY = Math.random() * (altoPantalla - 100);
 
-      botonNo.style.position = "fixed";
-      botonNo.style.left = nuevaX + "px";
-      botonNo.style.top = nuevaY + "px";
+      botonSi.style.position = "fixed";
+      botonSi.style.left = nuevaX + "px";
+      botonSi.style.top = nuevaY + "px";
     });
 
     function aceptar() {
