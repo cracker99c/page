@@ -1,101 +1,457 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>¿Quieres salir conmigo?</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5bfd0" />
+  <title>Daniel ❤️</title>
   <style>
-     body {
-  margin: 0;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-image: url("https://wallpaperaccess.com/full/2641047.gif");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  overflow: hidden;
-}
+    :root{
+      --pink-1:#f8d2df;
+      --pink-2:#f3c1d2;
+      --pink-3:#e9aeca;
+      --pink-4:#ffd9e7;
+      --white:#fff8fb;
+      --text:#fff7fb;
+      --heart:#ff3d52;
+      --heart-dark:#bf1731;
+      --eye:#b7d867;
+      --shadow:rgba(85, 36, 58, .16);
     }
 
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 25px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    *{ box-sizing:border-box; }
+
+    html, body{
+      margin:0;
+      width:100%;
+      min-height:100%;
+      overflow:hidden;
+      font-family:"Segoe UI", system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,.42), transparent 18%),
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,.18), transparent 14%),
+        radial-gradient(circle at 82% 26%, rgba(255,255,255,.16), transparent 12%),
+        linear-gradient(180deg, var(--pink-1) 0%, var(--pink-2) 48%, var(--pink-3) 100%);
+      color:var(--text);
     }
 
-    img {
-      width: 130px;
-      border-radius: 20px;
+    body{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px 14px 28px;
+      min-height:100svh;
     }
 
-    h1 {
-      color: #b83280;
+    .bg-bubbles{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      overflow:hidden;
     }
 
-    button {
-      padding: 12px 25px;
-      margin: 15px;
-      border: none;
-      border-radius: 20px;
-      font-size: 18px;
-      cursor: pointer;
+    .bubble{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,.14);
+      backdrop-filter:blur(2px);
+      animation: driftBubble linear infinite;
     }
 
-    #si {
-      background: #ff69b4;
-      color: white;
+    @keyframes driftBubble{
+      from{ transform:translateY(16px) scale(.9); opacity:.15; }
+      to{ transform:translateY(-22px) scale(1.05); opacity:.35; }
     }
 
-    #no {
-      background: #ddd6fe;
-      color: #5b21b6;
-      position: relative;
+    .phrase-layer{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:1;
+    }
+
+    .phrase{
+      position:absolute;
+      color:rgba(255,255,255,.92);
+      font-family:"Trebuchet MS", "Comic Sans MS", cursive, sans-serif;
+      font-size:clamp(16px, 3.8vw, 28px);
+      white-space:nowrap;
+      opacity:0;
+      text-shadow:
+        0 0 10px rgba(255,255,255,.16),
+        0 0 18px rgba(255,91,120,.18);
+      animation: phraseFade var(--dur) ease-in-out infinite;
+      animation-delay:var(--delay);
+    }
+
+    @keyframes phraseFade{
+      0%,100%{
+        opacity:0;
+        transform:translateY(10px) scale(.96);
+      }
+      18%{ opacity:0; }
+      34%,60%{
+        opacity:.96;
+        transform:translateY(0) scale(1);
+      }
+      82%{
+        opacity:0;
+        transform:translateY(-8px) scale(1.03);
+      }
+    }
+
+    .page{
+      position:relative;
+      z-index:3;
+      width:min(100%, 420px);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+
+    .title{
+      margin:0 0 10px;
+      color:var(--white);
+      font-size:clamp(28px, 7vw, 42px);
+      font-family:"Trebuchet MS", "Comic Sans MS", cursive, sans-serif;
+      font-weight:700;
+      letter-spacing:.02em;
+      text-shadow:
+        0 0 12px rgba(255,255,255,.18),
+        0 0 20px rgba(255,95,129,.18);
+    }
+
+    .scene{
+      position:relative;
+      width:min(86vw, 310px);
+      aspect-ratio:1 / 1.12;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .cat-svg{
+      width:100%;
+      height:auto;
+      display:block;
+      overflow:visible;
+      filter:drop-shadow(0 18px 24px rgba(96, 44, 67, .18));
+      animation: catFloat 3.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes catFloat{
+      from{ transform:translateY(0); }
+      to{ transform:translateY(-8px); }
+    }
+
+    .eye{
+      transform-box:fill-box;
+      transform-origin:center;
+      animation: blink 5.2s infinite;
+    }
+
+    .eye.right{ animation-delay:.1s; }
+
+    @keyframes blink{
+      0%, 44%, 48%, 92%, 100% { transform:scaleY(1); }
+      46%, 94% { transform:scaleY(0.08); }
+    }
+
+    .tail{
+      transform-box:fill-box;
+      transform-origin:8% 52%;
+      animation: tailSway 2.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes tailSway{
+      from{ transform:rotate(-1deg); }
+      to{ transform:rotate(4deg); }
+    }
+
+    .heart-burst{
+      position:absolute;
+      left:50%;
+      top:28%;
+      width:22px;
+      height:22px;
+      opacity:0;
+      transform:translate(-50%, -50%) scale(.3);
+      animation: riseBurst var(--dur) linear infinite;
+      animation-delay:var(--delay);
+      pointer-events:none;
+      filter:drop-shadow(0 4px 10px rgba(255,61,82,.18));
+    }
+
+    .heart-burst::before,
+    .heart-burst::after{
+      content:"";
+      position:absolute;
+      width:13px;
+      height:20px;
+      background:var(--heart);
+      border-radius:13px 13px 0 0;
+      left:10px;
+      top:0;
+      transform:rotate(-45deg);
+      transform-origin:0 100%;
+    }
+
+    .heart-burst::after{
+      left:0;
+      transform:rotate(45deg);
+      transform-origin:100% 100%;
+    }
+
+    .heart-burst.dark::before,
+    .heart-burst.dark::after{
+      background:var(--heart-dark);
+    }
+
+    .heart-burst.small{
+      width:16px;
+      height:16px;
+    }
+    .heart-burst.small::before,
+    .heart-burst.small::after{
+      width:10px;
+      height:15px;
+      left:7px;
+    }
+    .heart-burst.small::after{
+      left:0;
+    }
+
+    .heart-burst.tiny{
+      width:12px;
+      height:12px;
+    }
+    .heart-burst.tiny::before,
+    .heart-burst.tiny::after{
+      width:8px;
+      height:11px;
+      left:5px;
+    }
+    .heart-burst.tiny::after{
+      left:0;
+    }
+
+    @keyframes riseBurst{
+      0%{
+        opacity:0;
+        transform:translate(-50%, 18px) scale(.25);
+      }
+      12%{
+        opacity:1;
+        transform:translate(calc(-50% + var(--driftx)), 2px) scale(.95);
+      }
+      55%{
+        opacity:1;
+        transform:translate(calc(-50% + var(--driftx)), calc(-1 * var(--rise))) scale(1.04);
+      }
+      72%{
+        opacity:1;
+        transform:translate(calc(-50% + var(--driftx)), calc(-1 * var(--rise) - 4px)) scale(1.22);
+      }
+      80%{
+        opacity:.95;
+        transform:translate(calc(-50% + var(--driftx)), calc(-1 * var(--rise) - 4px)) scale(1.55);
+      }
+      100%{
+        opacity:0;
+        transform:translate(calc(-50% + var(--driftx)), calc(-1 * var(--rise) - 4px)) scale(1.9);
+      }
+    }
+
+    .burst-ring{
+      position:absolute;
+      left:50%;
+      top:28%;
+      width:10px;
+      height:10px;
+      margin-left:-5px;
+      margin-top:-5px;
+      border-radius:50%;
+      border:2px solid rgba(255,77,112,.7);
+      opacity:0;
+      animation: ringBurst var(--dur) linear infinite;
+      animation-delay:calc(var(--delay) + .72 * var(--dur));
+      pointer-events:none;
+    }
+
+    @keyframes ringBurst{
+      0%{
+        opacity:0;
+        transform:translate(var(--driftx), calc(-1 * var(--rise))) scale(.1);
+      }
+      8%{
+        opacity:.8;
+      }
+      100%{
+        opacity:0;
+        transform:translate(var(--driftx), calc(-1 * var(--rise))) scale(3.6);
+      }
+    }
+
+    .footer{
+      margin-top:12px;
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+      letter-spacing:.02em;
+      text-shadow:0 0 10px rgba(255,255,255,.1);
+    }
+
+    @media (max-width:430px){
+      .page{ width:100%; }
+      .scene{ width:min(88vw, 286px); }
     }
   </style>
 </head>
-
 <body>
+  <div class="bg-bubbles" id="bgBubbles" aria-hidden="true"></div>
+  <div class="phrase-layer" id="phraseLayer" aria-hidden="true"></div>
 
-  <div class="card">
-    <img src="https://media.tenor.com/JQq16u9aZnIAAAAi/cat-kitten.gif">
+  <main class="page">
+    <h1 class="title">daniel ❤️</h1>
 
-    <h1>🌸 ¿Quieres salir conmigo? 🌸</h1>
+    <div class="scene">
+      <!-- corazones que salen y explotan -->
+      <span class="heart-burst dark tiny" style="--driftx:-52px; --rise:92px; --dur:3.6s; --delay:.0s;"></span>
+      <span class="burst-ring" style="--driftx:-52px; --rise:92px; --dur:3.6s; --delay:.0s;"></span>
 
-    <button id="si" onclick="aceptar()">Sí 💖</button>
-    <button id="no">No 😭</button>
-  </div>
+      <span class="heart-burst small" style="--driftx:-18px; --rise:118px; --dur:3.2s; --delay:.7s;"></span>
+      <span class="burst-ring" style="--driftx:-18px; --rise:118px; --dur:3.2s; --delay:.7s;"></span>
+
+      <span class="heart-burst dark small" style="--driftx:20px; --rise:104px; --dur:3.8s; --delay:1.2s;"></span>
+      <span class="burst-ring" style="--driftx:20px; --rise:104px; --dur:3.8s; --delay:1.2s;"></span>
+
+      <span class="heart-burst" style="--driftx:58px; --rise:126px; --dur:3.4s; --delay:1.8s;"></span>
+      <span class="burst-ring" style="--driftx:58px; --rise:126px; --dur:3.4s; --delay:1.8s;"></span>
+
+      <span class="heart-burst tiny" style="--driftx:82px; --rise:74px; --dur:3.0s; --delay:2.3s;"></span>
+      <span class="burst-ring" style="--driftx:82px; --rise:74px; --dur:3.0s; --delay:2.3s;"></span>
+
+      <!-- gatito -->
+      <svg class="cat-svg" viewBox="0 0 320 320" role="img" aria-label="Gatito negro con corazones">
+        <ellipse cx="163" cy="276" rx="94" ry="12" fill="rgba(0,0,0,.14)"/>
+
+        <!-- cola -->
+        <path class="tail" d="M210 231
+          C255 228, 292 231, 304 238
+          C286 247, 244 247, 209 244Z"
+          fill="#050608"/>
+
+        <!-- cuerpo -->
+        <path d="M126 133
+          C126 116, 139 106, 158 106
+          L176 106
+          C210 106, 234 131, 234 164
+          L234 245
+          L126 245Z"
+          fill="#050608"/>
+
+        <!-- cabeza con orejas -->
+        <path d="M122 95
+          L138 61
+          L159 80
+          L178 80
+          L199 61
+          L216 95
+          L216 164
+          C216 182, 202 195, 185 195
+          L153 195
+          C136 195, 122 182, 122 164Z"
+          fill="#050608"/>
+
+        <!-- ojos -->
+        <g class="eye left">
+          <ellipse cx="149" cy="128" rx="15" ry="18" fill="var(--eye)"/>
+          <ellipse cx="149" cy="128" rx="4" ry="10" fill="#121212"/>
+          <circle cx="152" cy="121" r="1.8" fill="#edf7c7"/>
+        </g>
+        <g class="eye right">
+          <ellipse cx="188" cy="128" rx="15" ry="18" fill="var(--eye)"/>
+          <ellipse cx="188" cy="128" rx="4" ry="10" fill="#121212"/>
+          <circle cx="191" cy="121" r="1.8" fill="#edf7c7"/>
+        </g>
+
+        <!-- patita frontal -->
+        <path d="M127 237
+          C136 237, 141 240, 142 245
+          C142 252, 136 256, 128 256
+          C119 256, 113 252, 113 245
+          C114 240, 120 237, 127 237Z"
+          fill="#050608"/>
+      </svg>
+    </div>
+
+    <div class="footer">palabras que aparecen y desaparecen</div>
+  </main>
 
   <script>
-    const botonNo = document.getElementById("no");
+    const phraseLayer = document.getElementById('phraseLayer');
+    const bgBubbles = document.getElementById('bgBubbles');
 
-    botonNo.addEventListener("mouseover", function() {
-      const anchoPantalla = window.innerWidth;
-      const altoPantalla = window.innerHeight;
+    function addPhrases(){
+      const phrases = [
+        "lo siento",
+        "te amo",
+        "vuelve",
+        "te extraño",
+        "pienso en ti",
+        "perdóname",
+        "no te olvido",
+        "me haces falta",
+        "quiero verte",
+        "regresa"
+      ];
 
-      const nuevaX = Math.random() * (anchoPantalla - 100);
-      const nuevaY = Math.random() * (altoPantalla - 100);
+      const positions = [
+        {x: "9%", y: "11%"},
+        {x: "69%", y: "14%"},
+        {x: "14%", y: "29%"},
+        {x: "72%", y: "31%"},
+        {x: "8%", y: "48%"},
+        {x: "71%", y: "52%"},
+        {x: "14%", y: "67%"},
+        {x: "62%", y: "71%"},
+        {x: "28%", y: "21%"},
+        {x: "43%", y: "80%"}
+      ];
 
-      botonNo.style.position = "fixed";
-      botonNo.style.left = nuevaX + "px";
-      botonNo.style.top = nuevaY + "px";
-    });
-
-    function aceptar() {
-      document.body.innerHTML = `
-        <div style="text-align:center; font-family:Arial;">
-          <h1>¡Yujuuuu! 💖</h1>
-          <h2>Sabía que dirías que sí 😌✨</h2>
-        </div>
-      `;
+      phrases.forEach((text, i) => {
+        const p = document.createElement('span');
+        p.className = 'phrase';
+        p.textContent = text;
+        p.style.left = positions[i % positions.length].x;
+        p.style.top = positions[i % positions.length].y;
+        p.style.setProperty('--dur', `${4.8 + (i % 4) * 1.1}s`);
+        p.style.setProperty('--delay', `${i * .7}s`);
+        phraseLayer.appendChild(p);
+      });
     }
-  </script>
 
+    function addBubbles(){
+      const total = window.innerWidth < 500 ? 14 : 20;
+      for(let i = 0; i < total; i++){
+        const b = document.createElement('span');
+        b.className = 'bubble';
+        const size = 18 + Math.random() * 52;
+        b.style.width = `${size}px`;
+        b.style.height = `${size}px`;
+        b.style.left = `${Math.random() * 100}%`;
+        b.style.top = `${Math.random() * 100}%`;
+        b.style.animationDuration = `${6 + Math.random() * 8}s`;
+        b.style.animationDelay = `${Math.random() * 3}s`;
+        bgBubbles.appendChild(b);
+      }
+    }
+
+    addPhrases();
+    addBubbles();
+  </script>
 </body>
 </html>
